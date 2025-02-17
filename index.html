@@ -1,78 +1,38 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-
-const categories = [
-  "General",
-  "Conditions",
-  "Interventions",
-  "Vitals",
-  "Evidence",
-];
-
-const interventions = [
-  "Ketamine",
-  "Lorazepam",
-  "Morphine",
-  "Naloxon",
-  "Neck Brace",
-  "Needle Decompression",
-  "Nitroglycerin",
-  "Oxygen Mask",
-  "Saline Solution",
-  "Stethoscope",
-  "Tourniquet",
-  "Vascular Access",
-  "Ventilator",
-];
-
-export default function MedicalDashboard() {
-  const [selectedCategory, setSelectedCategory] = useState("Interventions");
-  const [selectedItem, setSelectedItem] = useState("Vascular Access");
-
-  return (
-    <div className="flex h-screen bg-gray-900 text-white">
-      {/* Sidebar */}
-      <div className="w-1/4 p-4 bg-gray-800">
-        <h2 className="text-xl font-bold mb-4">Select</h2>
-        <ScrollArea className="h-96 pr-2">
-          {interventions.map((item) => (
-            <Button
-              key={item}
-              variant={selectedItem === item ? "default" : "ghost"}
-              className="w-full mb-2"
-              onClick={() => setSelectedItem(item)}
-            >
-              {item}
-            </Button>
-          ))}
-        </ScrollArea>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 p-6">
-        <div className="flex justify-between mb-4">
-          {categories.map((cat) => (
-            <Button
-              key={cat}
-              variant={selectedCategory === cat ? "default" : "outline"}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </Button>
-          ))}
-        </div>
-
-        <Card className="bg-gray-700 p-4">
-          <CardContent>
-            <h3 className="text-xl font-bold mb-2">{selectedItem}</h3>
-            <p className="text-gray-300">
-              Displaying information about {selectedItem}. This can be dynamically updated.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Select</h2>
+            <ul>
+                <li><button onclick="selectItem('Ketamine')">Ketamine</button></li>
+                <li><button onclick="selectItem('Lorazepam')">Lorazepam</button></li>
+                <li><button onclick="selectItem('Morphine')">Morphine</button></li>
+                <li><button onclick="selectItem('Naloxon')">Naloxon</button></li>
+                <li><button onclick="selectItem('Neck Brace')">Neck Brace</button></li>
+                <li><button onclick="selectItem('Vascular Access')">Vascular Access</button></li>
+            </ul>
+        </aside>
+        <main>
+            <nav class="topbar">
+                <button onclick="selectCategory('General')">General</button>
+                <button onclick="selectCategory('Conditions')">Conditions</button>
+                <button onclick="selectCategory('Interventions')">Interventions</button>
+                <button onclick="selectCategory('Vitals')">Vitals</button>
+                <button onclick="selectCategory('Evidence')">Evidence</button>
+            </nav>
+            <section class="content">
+                <h3 id="item-title">Vascular Access</h3>
+                <p id="item-description">Displaying information about Vascular Access.</p>
+            </section>
+        </main>
     </div>
-  );
-}
+    <script src="script.js"></script>
+</body>
+</html>
